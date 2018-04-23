@@ -1,0 +1,19 @@
+<program>    ::= start <statements> as <vars> end
+
+<statements> ::= <from_get>
+               | <from_get> where { <equals> }
+               | any ( <var> ) { <statements> } <statements> 
+               | <statements> any ( <var> ) { <statements> } 
+               | any ( <var> ) { <statements> }
+
+<from_get>   ::= from <relation> get <vars> 
+               | from <relation> get <vars> and <from_get>
+
+<equals>     ::= <var> = <var>;
+               | <var> = <var>; <equals>
+
+<vars>       ::= <var>
+               | <var> , <vars>
+
+<var>        ::= [a-z0-9]+
+<relation>   ::= [A-Z]+
